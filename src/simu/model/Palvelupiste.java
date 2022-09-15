@@ -30,7 +30,6 @@ public class Palvelupiste {
 				
 	}
 
-
 	public void lisaaJonoon(Asiakas a){   // Jonon 1. asiakas aina palvelussa
 		jono.add(a);
 		
