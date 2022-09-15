@@ -49,11 +49,9 @@ public class Palvelupiste {
 		tapahtumalista.lisaa(new Tapahtuma(skeduloitavanTapahtumanTyyppi,Kello.getInstance().getAika()+palveluaika));
 	}
 
-
 	public boolean onVarattu(){
 		return varattu;
 	}
-
 
 	public boolean onJonossa(){
 		return jono.size() != 0;
