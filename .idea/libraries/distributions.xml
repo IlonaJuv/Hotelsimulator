@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="distributions">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/src/eduni/distributions/distributions.zip!/" />
+      <root url="jar://$PROJECT_DIR$/out/production/Hotelsimulator/eduni/distributions/distributions.zip!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
