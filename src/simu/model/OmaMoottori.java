@@ -10,8 +10,7 @@ import simu.framework.Tapahtuma;
 public class OmaMoottori extends Moottori{
 	
 	private Saapumisprosessi saapumisprosessi;
-	
-	
+
 	public OmaMoottori(){
 			
 		palvelupisteet = new Palvelupiste[3];
@@ -23,7 +22,6 @@ public class OmaMoottori extends Moottori{
 		saapumisprosessi = new Saapumisprosessi(new Negexp(15,5), tapahtumalista, TapahtumanTyyppi.ARR1);
 
 	}
-
 	
 	@Override
 	protected void alustukset() {
@@ -51,13 +49,9 @@ public class OmaMoottori extends Moottori{
 			           a.raportti(); 
 		}	
 	}
-
-	
 	@Override
 	protected void tulokset() {	
 		System.out.println("Simulointi päättyi kello " + Kello.getInstance().getAika());
 		System.out.println("Tulokset ... puuttuvat vielä");
 	}
-
-	
 }
