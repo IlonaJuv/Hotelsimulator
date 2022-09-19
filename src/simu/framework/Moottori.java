@@ -57,7 +57,6 @@ public abstract class Moottori {
 			}
 		}
 	}
-
 	
 	private double nykyaika(){
 		return tapahtumalista.getSeuraavanAika();
