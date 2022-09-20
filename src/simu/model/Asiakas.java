@@ -3,10 +3,9 @@ package simu.model;
 import simu.framework.Kello;
 import simu.framework.Trace;
 
-
 // TODO:
 // Asiakas koodataan simulointimallin edellyttämällä tavalla (data!)
-public class Asiakas {
+public class Asiakas extends Thread {
 	private double saapumisaika;
 	private double poistumisaika;
 	private int id;
@@ -19,7 +18,6 @@ public class Asiakas {
 		saapumisaika = Kello.getInstance().getAika();
 		Trace.out(Trace.Level.INFO, "Uusi asiakas nro " + id + " saapui klo "+saapumisaika);
 	}
-
 	public double getPoistumisaika() {
 		return poistumisaika;
 	}
@@ -36,11 +34,11 @@ public class Asiakas {
 		this.saapumisaika = saapumisaika;
 	}
 	
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 	
-	public void raportti(){
+	public void raportti() {
 		Trace.out(Trace.Level.INFO, "\nAsiakas "+id+ " valmis! ");
 		Trace.out(Trace.Level.INFO, "Asiakas "+id+ " saapui: " +saapumisaika);
 		Trace.out(Trace.Level.INFO,"Asiakas "+id+ " poistui: " +poistumisaika);
@@ -49,5 +47,4 @@ public class Asiakas {
 		double keskiarvo = sum/id;
 		System.out.println("Asiakkaiden läpimenoaikojen keskiarvo tähän asti "+ keskiarvo);
 	}
-
 }
