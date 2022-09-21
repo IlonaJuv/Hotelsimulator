@@ -7,23 +7,21 @@ import simu.framework.Moottori;
 import simu.framework.Saapumisprosessi;
 import simu.framework.Tapahtuma;
 
-import java.util.Scanner;
-
 public class OmaMoottori extends Moottori{
 	
 	private Saapumisprosessi saapumisprosessi;
 
 	public OmaMoottori() {
 
-		palvelupisteet = new Palvelupiste[3];
-		//Neljä palvelupistettä
+		palvelupisteet = new Palvelupiste[4];
 
-		palvelupisteet[0] = new Palvelupiste(new Normal(10, 6), tapahtumalista, TapahtumanTyyppi.BAARISTAPOISTUMINEN);
-		palvelupisteet[1] = new Palvelupiste(new Normal(10, 10), tapahtumalista, TapahtumanTyyppi.POISTUMINENPALVELUTISKI1);
-		palvelupisteet[2] = new Palvelupiste(new Normal(5, 3), tapahtumalista, TapahtumanTyyppi.RAVINTOLASTAPOISTUMINEN);
-		//palvelupisteet[3] = new Palvelupiste(new Normal(10, 10), tapahtumalista, TapahtumanTyyppi.POISTUMINENPALVELUTISKI2);
+		palvelupisteet[0]=new Palvelupiste(new Normal(10,6), tapahtumalista, TapahtumanTyyppi.KAHVILASTAPOISTUMINEN);
+		palvelupisteet[1]=new Palvelupiste(new Normal(10,3), tapahtumalista, TapahtumanTyyppi.PALVELUTISKI1POISTUMINEN);
+		palvelupisteet[2]=new Palvelupiste(new Normal(5,10), tapahtumalista, TapahtumanTyyppi.PALVELUTISKI2POISTUMINEN);
+		palvelupisteet[3]=new Palvelupiste(new Normal(5,3), tapahtumalista, TapahtumanTyyppi.RAVINTOLASTAPOISTUMINEN);
 
-		saapumisprosessi = new Saapumisprosessi(new Negexp(15, 5), tapahtumalista, TapahtumanTyyppi.ARR1);
+
+		saapumisprosessi = new Saapumisprosessi(new Negexp(15,5), tapahtumalista, TapahtumanTyyppi.ARR1);
 
 	}
 	@Override
@@ -44,17 +42,37 @@ public class OmaMoottori extends Moottori{
 			case ARR1: palvelupisteet[0].lisaaJonoon(new Asiakas());	
 				       saapumisprosessi.generoiSeuraava();	
 				break;
-			case BAARISTAPOISTUMINEN: a = palvelupisteet[0].otaJonosta();
+			case KAHVILASTAPOISTUMINEN: a = palvelupisteet[0].otaJonosta();
 				   	   palvelupisteet[1].lisaaJonoon(a);
 				break;
-			case POISTUMINENPALVELUTISKI1: a = palvelupisteet[1].otaJonosta();
-				   	   palvelupisteet[2].lisaaJonoon(a); 
+			case PALVELUTISKI1POISTUMINEN: a = palvelupisteet[1].otaJonosta();
+				   	   palvelupisteet[3].lisaaJonoon(a);
 				break;  
 			case RAVINTOLASTAPOISTUMINEN:
-				       a = palvelupisteet[2].otaJonosta();
+				       a = palvelupisteet[3].otaJonosta();
 					   a.setPoistumisaika(Kello.getInstance().getAika());
 			           a.raportti(); 
 		}
+		/*
+		Asiakas b;
+		switch (t.getTyyppi()){
+
+			case ARR1: palvelupisteet[0].lisaaJonoon(new Asiakas2());
+				       saapumisprosessi.generoiSeuraava();
+
+				break;
+			case KAHVILASTAPOISTUMINEN: a = palvelupisteet[0].otaJonosta();
+				   	   palvelupisteet[2].lisaaJonoon(a);
+				break;
+			case PALVELUTISKI2POISTUMINEN: a = palvelupisteet[2].otaJonosta();
+				   	   palvelupisteet[3].lisaaJonoon(a);
+				break;
+			case RAVINTOLASTAPOISTUMINEN:
+				       b = palvelupisteet[3].otaJonosta();
+					   b.setPoistumisaika(Kello.getInstance().getAika());
+			           b.raportti();
+		}
+		*/
 	}
 	@Override
 	protected void tulokset() {	
