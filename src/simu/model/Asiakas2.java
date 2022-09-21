@@ -15,7 +15,7 @@ public class Asiakas2 extends Asiakas {
 	    id = i++;
 	    
 		saapumisaika = Kello.getInstance().getAika();
-		Trace.out(Trace.Level.INFO, "Uusi asiakas:" + id + ":"+saapumisaika);
+		Trace.out(Trace.Level.INFO, "Uusi asiakas2:" + id + ":"+saapumisaika);
 	}
 
 	public double getPoistumisaika() {
