@@ -4,10 +4,10 @@ package simu.model;
 // Tapahtumien tyypit määritellään simulointimallin vaatimusten perusteella
 public enum TapahtumanTyyppi {
 	ARR1,
-	BAARISTAPOISTUMINEN,
-	POISTUMINENPALVELUTISKI1,
+	KAHVILASTAPOISTUMINEN,
+	PALVELUTISKI1POISTUMINEN,
 
-	POISTUMINENPALVELUTISKI2,
+	PALVELUTISKI2POISTUMINEN,
 	RAVINTOLASTAPOISTUMINEN
 
 }
