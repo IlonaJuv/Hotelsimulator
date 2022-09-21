@@ -7,7 +7,7 @@ import simu.framework.Kello;
 import simu.framework.Tapahtuma;
 import simu.framework.Tapahtumalista;
 
-public class Ilmoittautumistiski2 {
+public class Ilmoittautumistiski2 extends Palvelupiste{
 	
 
 		private LinkedList<Asiakas> jono = new LinkedList<Asiakas>(); // Tietorakennetoteutus
@@ -22,6 +22,7 @@ public class Ilmoittautumistiski2 {
 
 
 		public Ilmoittautumistiski2(ContinuousGenerator generator, Tapahtumalista tapahtumalista, TapahtumanTyyppi tyyppi){
+			super(generator, tapahtumalista, tyyppi);
 			this.tapahtumalista = tapahtumalista;
 			this.generator = generator;
 			this.skeduloitavanTapahtumanTyyppi = tyyppi;
