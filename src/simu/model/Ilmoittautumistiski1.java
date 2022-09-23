@@ -7,7 +7,7 @@ import simu.framework.Kello;
 import simu.framework.Tapahtuma;
 import simu.framework.Tapahtumalista;
 
-public class Ilmoittautumistiski1 extends Palvelupiste{
+public class Ilmoittautumistiski1 {
 	
 		private LinkedList<Asiakas> jono = new LinkedList<Asiakas>(); // Tietorakennetoteutus
 		
@@ -21,7 +21,7 @@ public class Ilmoittautumistiski1 extends Palvelupiste{
 
 
 		public Ilmoittautumistiski1(ContinuousGenerator generator, Tapahtumalista tapahtumalista, TapahtumanTyyppi tyyppi){
-			super(generator, tapahtumalista, tyyppi);
+
 			this.tapahtumalista = tapahtumalista;
 			this.generator = generator;
 			this.skeduloitavanTapahtumanTyyppi = tyyppi;			
@@ -39,6 +39,11 @@ public class Ilmoittautumistiski1 extends Palvelupiste{
 
 		public void aloitaPalvelu(){  //Aloitetaan uusi palvelu, asiakas on jonossa palvelun aikana
 			varattu = true;
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				throw new RuntimeException(e);
+			}
 			double palveluaika = generator.sample();
 			tapahtumalista.lisaa(new Tapahtuma(skeduloitavanTapahtumanTyyppi,Kello.getInstance().getAika()+palveluaika));
 		}

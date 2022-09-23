@@ -1,8 +1,7 @@
 package simu.objects;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class Baari {
+public class Kahvila {
     private List<Tuoli>tuoliList;
 }
