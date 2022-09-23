@@ -19,11 +19,14 @@ public class Varaus {
     public Varaus(Date aloitusAika, int aika, Asiakas asiakas, VarauksenAlkupera alkupera) {
         this.huoneet = new LinkedList<>();
         this.aloitusAika = aloitusAika;
-        this.lopetusAika = lopetusAika;
+        this.lopetusAika = new Date(aloitusAika.getTime() + (long)(aika * 86400));
         this.aika = aika;
         this.asiakas = asiakas;
         this.tila = VarauksenTila.ODOTTAA;
         this.alkupera = alkupera;
+    }
+    public boolean lisaaHuoneVaraus(Huone huone) {
+        return this.huoneet.add(huone);
     }
 
     public void setHuoneet(List<Huone> huoneet) {
@@ -34,18 +37,26 @@ public class Varaus {
         return huoneet;
     }
     public Date getAloitusAika() {
-        return aloitusAika;
+        return this.aloitusAika;
     }
 
     public void setAloitusAika(Date aloitusAika) {
         this.aloitusAika = aloitusAika;
     }
     public Date getLopetusAika() {
-        return lopetusAika;
+        return this.lopetusAika;
     }
 
     public void setLopetusAika(Date lopetusAika) {
         this.lopetusAika = lopetusAika;
+    }
+
+    public Asiakas getAsiakas() {
+        return this.asiakas;
+    }
+
+    public void setAsiakas(Asiakas asiakas){
+        this.asiakas = asiakas;
     }
     public void varmistaVaraus(){
         this.tila = VarauksenTila.VARMISTETTU;
@@ -65,6 +76,7 @@ public class Varaus {
                 ", alkupera=" + alkupera +
                 ", aloitusAika=" + aloitusAika +
                 ", lopetusAika=" + lopetusAika +
+                ", sdf=" + sdf +
                 "}\n";
     }
 }
