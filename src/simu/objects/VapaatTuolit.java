@@ -1,14 +1,17 @@
 package simu.objects;
 
+import simu.model.Asiakas;
+
 public class VapaatTuolit {
 
-    Tuoli tuoli;
+    Asiakas asiakas;
     int maara;
 
     public VapaatTuolit(Tuoli tuoli, int maara){
         this.maara = maara;
     }
 
-    public void lisaaTuoli(VapaatTuolit vapaatuoli) {
+    public void lisaaAsiakas(Asiakas asiakas) {
+
     }
 }

@@ -14,11 +14,13 @@ public class Asiakas {
 	public boolean varaus = true;
 	private static int i = 1;
 	private static long sum = 0;
+	String asiakastunniste;
 
-	public Asiakas(){
+	public Asiakas(String asiakastunniste){
+		this.asiakastunniste = asiakastunniste;
 	    id = i++;
 		saapumisaika = Kello.getInstance().getAika();
-		Trace.out(Trace.Level.INFO, "Uusi asiakas nro " + id + " saapui klo "+saapumisaika);
+		//Trace.out(Trace.Level.INFO, "Uusi asiakas nro " + id + " saapui klo "+saapumisaika);
 		onkoVaraus();
 		//Mahdollisesti tänne voisi tehdä sen boolean-muuttujan varauksesta
 	}
@@ -58,5 +60,11 @@ public class Asiakas {
 		sum += (poistumisaika-saapumisaika);
 		double keskiarvo = sum/id;
 		System.out.println("Asiakkaiden läpimenoaikojen keskiarvo tähän asti "+ keskiarvo);
+	}
+	@Override
+	public String toString() {
+		return "Asiakas{" +
+				"asiakastunniste='" + asiakastunniste + '\'' +
+				'}';
 	}
 }
