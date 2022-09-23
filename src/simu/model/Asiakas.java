@@ -16,8 +16,10 @@ public class Asiakas {
 	public boolean kahvila = true;
 	private static int i = 1;
 	private static long sum = 0;
+	String asiakastunniste;
 	private static long sum2 = 0;
 	private static long sum3 = 0;
+
 
 	private int kahvilaTodennakoisyys = 50;
 
@@ -26,11 +28,10 @@ public class Asiakas {
 	//double keskiarvo;
 	Random rd;
 	Random rd2;
-	public Asiakas(){
+	public Asiakas(String asiakastunniste){
+		this.asiakastunniste = asiakastunniste;
 	    id = i++;
 		saapumisaika = Kello.getInstance().getAika();
-		Trace.out(Trace.Level.INFO, "Uusi asiakas nro " + id + " saapui klo "+saapumisaika);
-
 		//Mahdollisesti tänne voisi tehdä sen boolean-muuttujan varauksesta
 		//onkoVaraus();
 		rd = new Random();
@@ -78,6 +79,7 @@ public class Asiakas {
 	public long getId() {
 		return id;
 	}
+	
 	public void raportti() {
 		Trace.out(Trace.Level.INFO, "\nAsiakas "+id+ " valmis! ");
 		Trace.out(Trace.Level.INFO, "Asiakas "+id+ " saapui: " +saapumisaika);
@@ -99,5 +101,11 @@ public class Asiakas {
 		sum3 += (poistumisaika-saapumisaika);
 		double kokKeskiarvo = sum3/id;
 		System.out.println("Kaikkien asiakkaiden läpimenoaikojen keskiarvo tähän asti "+ kokKeskiarvo);
+	}
+	@Override
+	public String toString() {
+		return "Asiakas{" +
+				"asiakastunniste='" + asiakastunniste + '\'' +
+				'}';
 	}
 }
