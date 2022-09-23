@@ -28,7 +28,6 @@ public class Ilmoittautumistiski2 extends Palvelupiste{
 			this.skeduloitavanTapahtumanTyyppi = tyyppi;
 		}
 
-
 		public void lisaaJonoon(Asiakas a){   // Jonon 1. asiakas aina palvelussa
 			jono.add(a);
 			
