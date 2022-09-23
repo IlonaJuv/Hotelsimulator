@@ -27,6 +27,8 @@ public class SimuTesti {
             valitutHuoneet.add(hotelli.getHuoneet().get(0));
             varauksenTeko.varmistaVaraus(luoVarausEtukateenTaiHotellissa(etukateenTodennakoisuus), valitutHuoneet);
         }
+        System.out.println(varauksenTeko.getVarauksetEtukateen());
+        System.out.println(varauksenTeko.getVarauksetHotellissa());
     }
 
     private Varaus luoVarausEtukateenTaiHotellissa(int etukateenTodennakoisuus) {
