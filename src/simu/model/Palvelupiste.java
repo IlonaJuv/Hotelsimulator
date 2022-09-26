@@ -1,6 +1,7 @@
 package simu.model;
 
 import java.util.LinkedList;
+import java.util.List;
 
 import eduni.distributions.ContinuousGenerator;
 import simu.framework.Kello;
@@ -29,15 +30,22 @@ public class Palvelupiste {
 
 		ilmo1 =  new Ilmoittautumistiski1(generator, tapahtumalista, tyyppi);
 	}
-
+	@Override
+	public String toString() {
+		return "Palvelupiste{" +
+				"jono=" + jono +
+				'}';
+	}
 	public void lisaaJonoon(Asiakas a){   // Jonon 1. asiakas aina palvelussa
 		jono.add(a);
+		System.out.println(jono);
 	}
-
+	public List<Asiakas> jononKokoko () {
+		return jono;
+	}
 	public Asiakas ensimmainen () {
 		return jono.peek();
 	}
-
 	public Asiakas otaJonosta(){  // Poistetaan palvelussa ollut
 		varattu = false;
 		return jono.poll();
@@ -47,16 +55,13 @@ public class Palvelupiste {
 		Trace.out(Trace.Level.INFO, "Aloitetaan uusi palvelu asiakkaalle " + jono.peek().getId());
 		varattu = true;
 	/*	boolean varaus = jono.peek().onkoVaraus();
-
 		if (!varaus) {
 			varattu = true;
 			double palveluaika2 = generator.sample()+10;
 			tapahtumalista.lisaa(new Tapahtuma(skeduloitavanTapahtumanTyyppi,Kello.getInstance().getAika()+palveluaika2));
 		}
-
 		double palveluaika = generator.sample();
 		tapahtumalista.lisaa(new Tapahtuma(skeduloitavanTapahtumanTyyppi,Kello.getInstance().getAika()+palveluaika));
-
 */
 		if (skeduloitavanTapahtumanTyyppi == TapahtumanTyyppi.KAHVILASTAPOISTUMINEN) {
 			double palveluaika = generator.sample();
