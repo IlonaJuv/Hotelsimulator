@@ -20,6 +20,9 @@ public class Asiakas {
 	private static long sum2 = 0;
 	private static long sum3 = 0;
 
+	Palvelupiste palvelupiste;
+
+
 
 	private int kahvilaTodennakoisyys = 50;
 
@@ -30,7 +33,20 @@ public class Asiakas {
 	Random rd2;
 	public Asiakas(String asiakastunniste){
 		this.asiakastunniste = asiakastunniste;
-	    id = i++;
+		id = i++;
+		saapumisaika = Kello.getInstance().getAika();
+		//Mahdollisesti tänne voisi tehdä sen boolean-muuttujan varauksesta
+		//onkoVaraus();
+		rd = new Random();
+		varaus = rd.nextBoolean();
+
+		rd2 = new Random();
+		kahvila = rd.nextBoolean();
+		//meneekoKahvilaan();
+	}
+	public Asiakas(){
+		this.asiakastunniste = asiakastunniste;
+		id = i++;
 		saapumisaika = Kello.getInstance().getAika();
 		//Mahdollisesti tänne voisi tehdä sen boolean-muuttujan varauksesta
 		//onkoVaraus();
@@ -75,11 +91,11 @@ public class Asiakas {
 	public boolean onkoVaraus() {
 		return varaus;
 	}
-	
+
 	public long getId() {
 		return id;
 	}
-	
+
 	public void raportti() {
 		Trace.out(Trace.Level.INFO, "\nAsiakas "+id+ " valmis! ");
 		Trace.out(Trace.Level.INFO, "Asiakas "+id+ " saapui: " +saapumisaika);
@@ -101,6 +117,7 @@ public class Asiakas {
 		sum3 += (poistumisaika-saapumisaika);
 		double kokKeskiarvo = sum3/id;
 		System.out.println("Kaikkien asiakkaiden läpimenoaikojen keskiarvo tähän asti "+ kokKeskiarvo);
+
 	}
 	@Override
 	public String toString() {

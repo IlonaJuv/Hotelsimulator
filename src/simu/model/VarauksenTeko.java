@@ -18,7 +18,7 @@ public class VarauksenTeko {
         this.varauksetEtukateen = new LinkedList<>();
     }
 
-    public List<Huone> vapaatHuoneet(Date aloitusAika, Date lopetusAika, int asiakkaidenMaara) {
+    public List<Huone> vapaatHuoneet(Date aloitusAika, Date lopetusAika, int id) {
         List<Huone> vapaatHuoneet = new ArrayList<>();
         //etsitään vapaita huoneita
         return vapaatHuoneet;
@@ -45,7 +45,6 @@ public class VarauksenTeko {
         } while(this.tarkistaHuoneidenSaatavuus(huone, varaus.getAloitusAika(), varaus.getLopetusAika()));
                     return false;
                 }
-
                 public boolean tarkistaHuoneidenSaatavuus (Huone huone, Date aloitusAika, Date lopetusAika){
                     // katsoo etukäteen varattujen jonon
                     List<Varaus> huoneVaraukset = (List)this.varauksetEtukateen.stream().filter((e) -> {
@@ -54,6 +53,9 @@ public class VarauksenTeko {
                     // varaus epäonnistuu, jos huoneita ei ole saatavilla
                     return true;
                 }
+                /*  List<Varaus> huoneVaraukset = (List)this.varauksetEtukateen.stream().filter((e) -> {
+                        return e.getHuoneet().contains(huone);
+                    }).collect(Collectors.toList());*/
 
                 public List<Varaus> getVarauksetHotellissa () {
                     return this.varauksetHotellissa;

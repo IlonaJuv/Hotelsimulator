@@ -1,4 +1,4 @@
-/*package simu.model;
+package simu.model;
 
 import eduni.distributions.Negexp;
 import eduni.distributions.Normal;
@@ -68,4 +68,3 @@ public class OmaMoottori extends Moottori {
 	}
 }
 
- */

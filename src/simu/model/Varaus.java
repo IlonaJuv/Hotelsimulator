@@ -8,22 +8,25 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Varaus {
     List<Huone> huoneet;
-    int aika;
+    Huone huone;
+    double aika;
     Asiakas asiakas;
     VarauksenTila tila;
     VarauksenAlkupera alkupera;
     Date aloitusAika;
     Date lopetusAika;
     SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+    static int i =0;
 
-    public Varaus(Date aloitusAika, int aika, Asiakas asiakas, VarauksenAlkupera alkupera) {
+    public Varaus(Date aloitusAika, double aika, Asiakas asiakas, VarauksenAlkupera alkupera) {
         this.huoneet = new LinkedList<>();
         this.aloitusAika = aloitusAika;
-        this.lopetusAika = new Date(aloitusAika.getTime() + (long) (aika * 86400));
         this.aika = aika;
+        this.lopetusAika = new Date(aloitusAika.getTime() + (long) (aika * 86390));
         this.asiakas = asiakas;
         this.tila = VarauksenTila.ODOTTAA;
         this.alkupera = alkupera;
+
     }
 
     public boolean lisaaHuoneVaraus(Huone huone) {
@@ -38,6 +41,17 @@ public class Varaus {
         return huoneet;
     }
 
+    public void setHuone(Huone huone) {
+        this.huone = huone;
+    }
+    public Huone getHuone() {
+      /* // int id =0;
+        i ++;
+        huone = huoneet.get(i);
+*/
+        return this.huone;
+    }
+
     public Date getAloitusAika() {
         return this.aloitusAika;
     }
@@ -49,11 +63,11 @@ public class Varaus {
     public Date getLopetusAika() {
         return this.lopetusAika;
     }
-
+/*
     public void setLopetusAika(Date lopetusAika) {
         this.lopetusAika = lopetusAika;
     }
-
+*/
     public Asiakas getAsiakas() {
         return this.asiakas;
     }
@@ -80,7 +94,7 @@ public class Varaus {
                 ", alkupera=" + alkupera +
                 ", aloitusAika=" + aloitusAika +
                 ", lopetusAika=" + lopetusAika +
-                ", sdf=" + sdf +
+              //  ", sdf=" + sdf +
                 "}\n";
     }
 }
