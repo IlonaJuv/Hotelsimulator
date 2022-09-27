@@ -8,8 +8,8 @@ public class Simulaattori { //Tekstipohjainen
 	public static void main(String[] args) {
 
 
-		SimuTesti simuTesti = new SimuTesti();
-		simuTesti.simuTestaus1();
+		//SimuTesti simuTesti = new SimuTesti();
+		//simuTesti.simuTestaus1();
 
 		Trace.setTraceLevel(Level.INFO);
 		Moottori m = new OmaMoottori();

@@ -75,6 +75,9 @@ public class Palvelupiste {
 		} else if (skeduloitavanTapahtumanTyyppi == TapahtumanTyyppi.PALVELUTISKI2POISTUMINEN) {
 			double palveluaika = generator.sample();
 			tapahtumalista.lisaa(new Tapahtuma(skeduloitavanTapahtumanTyyppi,Kello.getInstance().getAika()+palveluaika));
+		} else if (skeduloitavanTapahtumanTyyppi == TapahtumanTyyppi.HUONEESTAPOISTUMINEN) {
+			double palveluaika = generator.sample();
+			tapahtumalista.lisaa(new Tapahtuma(skeduloitavanTapahtumanTyyppi,Kello.getInstance().getAika()+palveluaika));
 		} else {
 			double palveluaika = generator.sample();
 			tapahtumalista.lisaa(new Tapahtuma(skeduloitavanTapahtumanTyyppi,Kello.getInstance().getAika()+palveluaika));
