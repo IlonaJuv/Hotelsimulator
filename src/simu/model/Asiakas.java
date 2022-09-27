@@ -31,6 +31,7 @@ public class Asiakas {
 	//double keskiarvo;
 	Random rd;
 	Random rd2;
+
 	public Asiakas(String asiakastunniste){
 		//this.asiakastunniste = asiakastunniste;
 		id = i++;
@@ -44,6 +45,8 @@ public class Asiakas {
 		kahvila = rd.nextBoolean();
 		//meneekoKahvilaan();
 	}
+
+
 	public Asiakas(){
 		//this.asiakastunniste = asiakastunniste;
 		id = i++;
@@ -117,7 +120,6 @@ public class Asiakas {
 		sum3 += (poistumisaika-saapumisaika);
 		double kokKeskiarvo = sum3/id;
 		System.out.println("Kaikkien asiakkaiden läpimenoaikojen keskiarvo tähän asti "+ kokKeskiarvo);
-
 	}
 /*	@Override
 	public String toString() {

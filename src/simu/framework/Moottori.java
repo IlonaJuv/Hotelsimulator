@@ -24,7 +24,11 @@ public abstract class Moottori {
 	public void setSimulointiaika(double aika) {
 		simulointiaika = aika;
 	}
-	
+
+	public double getSimulointiaika(){
+		return simulointiaika;
+	}
+
 	
 	public void aja(){
 		alustukset(); // luodaan mm. ensimmäinen tapahtuma
@@ -65,8 +69,6 @@ public abstract class Moottori {
 	private boolean simuloidaan(){
 		return kello.getAika() < simulointiaika;
 	}
-	
-			
 
 	protected abstract void alustukset(); // Määritellään simu.model-pakkauksessa Moottorin aliluokassa
 	
