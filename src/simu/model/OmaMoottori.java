@@ -12,12 +12,13 @@ public class OmaMoottori extends Moottori {
 
 	public OmaMoottori() {
 
-		palvelupisteet = new Palvelupiste[4];
+		palvelupisteet = new Palvelupiste[5];
 
 		palvelupisteet[0] = new Palvelupiste(new Normal(5, 6), tapahtumalista, TapahtumanTyyppi.KAHVILASTAPOISTUMINEN);
 		palvelupisteet[1] = new Palvelupiste(new Normal(5, 3), tapahtumalista, TapahtumanTyyppi.PALVELUTISKI1POISTUMINEN);
 		palvelupisteet[2] = new Palvelupiste(new Normal(5, 3), tapahtumalista, TapahtumanTyyppi.PALVELUTISKI2POISTUMINEN);
-		palvelupisteet[3] = new Palvelupiste(new Normal(5, 3), tapahtumalista, TapahtumanTyyppi.RAVINTOLASTAPOISTUMINEN);
+		palvelupisteet[3] = new Palvelupiste(new Normal(5, 3), tapahtumalista, TapahtumanTyyppi.HUONEESTAPOISTUMINEN);
+		palvelupisteet[4] = new Palvelupiste(new Normal(5, 3), tapahtumalista, TapahtumanTyyppi.RAVINTOLASTAPOISTUMINEN);
 
 		saapumisprosessi = new Saapumisprosessi(new Negexp(15,5), tapahtumalista, TapahtumanTyyppi.ARR1);
 
@@ -54,8 +55,11 @@ public class OmaMoottori extends Moottori {
 				case PALVELUTISKI2POISTUMINEN: a = palvelupisteet[2].otaJonosta();
 					palvelupisteet[3].lisaaJonoon(a);
 					break;
+				case HUONEESTAPOISTUMINEN: a = palvelupisteet[3].otaJonosta();
+					palvelupisteet[4].lisaaJonoon(a);
+					break;
 				case RAVINTOLASTAPOISTUMINEN:
-					a = palvelupisteet[3].otaJonosta();
+					a = palvelupisteet[4].otaJonosta();
 					a.setPoistumisaika(Kello.getInstance().getAika());
 					a.raportti();
 			}

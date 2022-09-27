@@ -16,7 +16,7 @@ public class Asiakas {
 	public boolean kahvila = true;
 	private static int i = 1;
 	private static long sum = 0;
-	String asiakastunniste;
+	//String asiakastunniste;
 	private static long sum2 = 0;
 	private static long sum3 = 0;
 
@@ -32,7 +32,7 @@ public class Asiakas {
 	Random rd;
 	Random rd2;
 	public Asiakas(String asiakastunniste){
-		this.asiakastunniste = asiakastunniste;
+		//this.asiakastunniste = asiakastunniste;
 		id = i++;
 		saapumisaika = Kello.getInstance().getAika();
 		//Mahdollisesti tänne voisi tehdä sen boolean-muuttujan varauksesta
@@ -45,7 +45,7 @@ public class Asiakas {
 		//meneekoKahvilaan();
 	}
 	public Asiakas(){
-		this.asiakastunniste = asiakastunniste;
+		//this.asiakastunniste = asiakastunniste;
 		id = i++;
 		saapumisaika = Kello.getInstance().getAika();
 		//Mahdollisesti tänne voisi tehdä sen boolean-muuttujan varauksesta
@@ -119,10 +119,12 @@ public class Asiakas {
 		System.out.println("Kaikkien asiakkaiden läpimenoaikojen keskiarvo tähän asti "+ kokKeskiarvo);
 
 	}
-	@Override
+/*	@Override
 	public String toString() {
 		return "Asiakas{" +
-				"asiakastunniste='" + asiakastunniste + '\'' +
+				//"asiakastunniste='" + asiakastunniste + '\'' +
 				'}';
 	}
+
+ */
 }
