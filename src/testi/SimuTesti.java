@@ -6,25 +6,46 @@ import java.util.*;
 
 public class SimuTesti {
     int asiakasLaskuri = 1;
+    Varaus varaus;
 
     public void simuTestaus1() {
+        int kapasiteetti = 3;
+        List<Huone> huoneet = new ArrayList<>();
+        for (int i = 1; i<= kapasiteetti; i++) {
+            Huone huone1 = new Huone(i);
+            huoneet.add(huone1);
+
+        }
+/*
         Huone huone1 = new Huone(1);
         Huone huone2 = new Huone(2);
         Huone huone3 = new Huone(4);
         Huone huone4 = new Huone(4);
         Huone huone5 = new Huone(1);
-        List<Huone> huoneet = new ArrayList<>();
+
         huoneet.add(huone1);
         huoneet.add(huone2);
         huoneet.add(huone3);
         huoneet.add(huone4);
         huoneet.add(huone5);
+
+ */
         Hotelli hotelli = new Hotelli(huoneet);
         VarauksenTeko varauksenTeko = new VarauksenTeko(hotelli);
         int etukateenTodennakoisuus = 60;
+
+
         while (varauksenTeko.getVarauksetHotellissa().size() + varauksenTeko.getVarauksetEtukateen().size() < 300){
             List<Huone> valitutHuoneet = new LinkedList<>();
-            valitutHuoneet.add(hotelli.getHuoneet().get(0));
+
+                for (int i = 0; i < hotelli.getHuoneet().size(); i++) {
+
+                    valitutHuoneet.add(hotelli.getHuoneet().get(i));
+                    // valitutHuoneet.add(hotelli.getHuoneet().get(0));
+                    varaus.setHuone(hotelli.getHuoneet().get(i));
+
+                }
+
             varauksenTeko.varmistaVaraus(luoVarausEtukateenTaiHotellissa(etukateenTodennakoisuus), valitutHuoneet);
         }
         System.out.println(varauksenTeko.getVarauksetEtukateen());
@@ -42,11 +63,12 @@ public class SimuTesti {
 
     private Varaus luoVarausAlkuperalla(VarauksenAlkupera alkupera) {
         //min ja max päivät jonka ajaksi huoneen voi varata
-        int paivienMaara = Utils.getRandomNumber(1,3);
+        double paivienMaara = Utils.getRandomNumber(1,4);
         Date aloitusAika = new Date(Calendar.getInstance().getTimeInMillis() + Utils.getRandomNumber(400000, 4000000));
         String asiakastunniste = "C" + asiakasLaskuri;
         asiakasLaskuri = asiakasLaskuri + 1;
         Varaus varaus = new Varaus(aloitusAika,paivienMaara, new Asiakas(asiakastunniste), alkupera);
+
         return varaus;
     }
 }

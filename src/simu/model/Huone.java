@@ -1,16 +1,16 @@
 package simu.model;
 
 public class Huone {
-    int vieraidenMaara;
+    int id;
 
-    public Huone(int vieraidenMaara){
-        this.vieraidenMaara = vieraidenMaara;
+    public Huone(int id){
+        this.id = id;
     }
 
     @Override
     public String toString() {
         return "Huone{" +
-                "vieraidenMaara=" + vieraidenMaara +
+                "id=" + id +
                 '}';
     }
 }
