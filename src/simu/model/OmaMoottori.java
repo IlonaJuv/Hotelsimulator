@@ -32,7 +32,7 @@ public class OmaMoottori extends Moottori {
 		palvelupisteet[0] = new Palvelupiste(new Normal(5, 6), tapahtumalista, TapahtumanTyyppi.KAHVILASTAPOISTUMINEN);
 		palvelupisteet[1] = new Palvelupiste(new Normal(5, 10), tapahtumalista, TapahtumanTyyppi.PALVELUTISKI1POISTUMINEN);
 		palvelupisteet[2] = new Palvelupiste(new Normal(5, 3), tapahtumalista, TapahtumanTyyppi.PALVELUTISKI2POISTUMINEN);
-		palvelupisteet[3] = new Palvelupiste(new Normal(5, 3), tapahtumalista, TapahtumanTyyppi.HUONEESTAPOISTUMINEN);
+		palvelupisteet[3] = new Palvelupiste(new Normal(8, 20), tapahtumalista, TapahtumanTyyppi.HUONEESTAPOISTUMINEN);
 		palvelupisteet[4] = new Palvelupiste(new Normal(5, 3), tapahtumalista, TapahtumanTyyppi.RAVINTOLASTAPOISTUMINEN);
 
 		saapumisprosessi = new Saapumisprosessi(new Negexp(15,5), tapahtumalista, TapahtumanTyyppi.ARR1);
