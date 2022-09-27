@@ -42,7 +42,7 @@ public class SimuTesti {
 
                     valitutHuoneet.add(hotelli.getHuoneet().get(i));
                     // valitutHuoneet.add(hotelli.getHuoneet().get(0));
-                    varaus.setHuone(hotelli.getHuoneet().get(i));
+//                    varaus.setHuone(hotelli.getHuoneet().get(i));
 
                 }
 
@@ -60,7 +60,6 @@ public class SimuTesti {
         }
         return luoVarausAlkuperalla(alkupera);
     }
-
     private Varaus luoVarausAlkuperalla(VarauksenAlkupera alkupera) {
         //min ja max päivät jonka ajaksi huoneen voi varata
         double paivienMaara = Utils.getRandomNumber(1,4);
