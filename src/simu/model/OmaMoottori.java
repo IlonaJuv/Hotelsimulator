@@ -1,11 +1,13 @@
 package simu.model;
 
+import controller.IKontrolleri;
 import eduni.distributions.Negexp;
 import eduni.distributions.Normal;
 import simu.framework.Kello;
 import simu.framework.Moottori;
 import simu.framework.Saapumisprosessi;
 import simu.framework.Tapahtuma;
+import controller.IKontrolleri;
 
 public class OmaMoottori extends Moottori {
 	private Saapumisprosessi saapumisprosessi;
@@ -25,7 +27,8 @@ public class OmaMoottori extends Moottori {
 	double ravintolaJonoPoistuminen;
 
 
-	public OmaMoottori() {
+	public OmaMoottori(IKontrolleri kontrolleri) { //UUSI
+		super(kontrolleri);
 
 		palvelupisteet = new Palvelupiste[5];
 
@@ -113,5 +116,6 @@ public class OmaMoottori extends Moottori {
 		//System.out.println(asiakaslkm);
 		System.out.println("Simulointi päättyi kello " + Kello.getInstance().getAika());
 		System.out.println("Tulokset ... puuttuvat vielä");
+		kontrolleri.naytaLoppuaika(Kello.getInstance().getAika());
 	}
 }
