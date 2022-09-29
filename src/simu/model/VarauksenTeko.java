@@ -1,4 +1,4 @@
-package simu.model;
+/*package simu.model;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -53,9 +53,7 @@ public class VarauksenTeko {
                     // varaus epäonnistuu, jos huoneita ei ole saatavilla
                     return true;
                 }
-                /*  List<Varaus> huoneVaraukset = (List)this.varauksetEtukateen.stream().filter((e) -> {
-                        return e.getHuoneet().contains(huone);
-                    }).collect(Collectors.toList());*/
+
 
                 public List<Varaus> getVarauksetHotellissa () {
                     return this.varauksetHotellissa;
@@ -70,3 +68,4 @@ public class VarauksenTeko {
                     this.varauksetEtukateen = varauksetEtukateen;
                 }
             }
+*/

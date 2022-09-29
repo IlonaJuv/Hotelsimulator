@@ -31,90 +31,103 @@ public class OmaMoottori extends Moottori {
 		super(kontrolleri);
 
 		palvelupisteet = new Palvelupiste[5];
-
 		palvelupisteet[0] = new Palvelupiste(new Normal(5, 6), tapahtumalista, TapahtumanTyyppi.KAHVILASTAPOISTUMINEN);
-		palvelupisteet[1] = new Palvelupiste(new Normal(5, 10), tapahtumalista, TapahtumanTyyppi.PALVELUTISKI1POISTUMINEN);
-		palvelupisteet[2] = new Palvelupiste(new Normal(5, 3), tapahtumalista, TapahtumanTyyppi.PALVELUTISKI2POISTUMINEN);
-		palvelupisteet[3] = new Palvelupiste(new Normal(8, 20), tapahtumalista, TapahtumanTyyppi.HUONEESTAPOISTUMINEN);
-		palvelupisteet[4] = new Palvelupiste(new Normal(5, 3), tapahtumalista, TapahtumanTyyppi.RAVINTOLASTAPOISTUMINEN);
+		palvelupisteet[1] = new Palvelupiste(new Normal(5, 6), tapahtumalista, TapahtumanTyyppi.PALVELUTISKI1POISTUMINEN);
+		palvelupisteet[2] = new Palvelupiste(new Normal(5, 6), tapahtumalista, TapahtumanTyyppi.PALVELUTISKI2POISTUMINEN);
+		palvelupisteet[3] = new Palvelupiste(new Normal(5, 6), tapahtumalista, TapahtumanTyyppi.HUONEESTAPOISTUMINEN);
+		palvelupisteet[4] = new Palvelupiste(new Normal(15, 6), tapahtumalista, TapahtumanTyyppi.RAVINTOLASTAPOISTUMINEN);
 
 		saapumisprosessi = new Saapumisprosessi(new Negexp(15,5), tapahtumalista, TapahtumanTyyppi.ARR1);
-
 	}
 	@Override
 	protected void alustukset() {
 		saapumisprosessi.generoiSeuraava(); // Ensimmäinen saapuminen järjestelmään
 	}
 
+	double rvTulo, kTulo, hTulo, p1Tulo, p2Tulo;
+
+	double kTuloAsiakasluokasta, p1TuloAsiakasluokasta, p2TuloAsiakasluokasta, hTuloAsiakasluokasta, rvTuloAsiakasluokasta;
 	@Override
+
 	protected void suoritaTapahtuma(Tapahtuma t){  // B-vaiheen tapahtumat
 		Asiakas a;
 			switch (t.getTyyppi()){
 				case ARR1: a = new Asiakas();
-					asiakaslkm ++;
 					if (a.meneekoKahvilaan()) {
+						kTulo = Kello.getInstance().getAika();
 						palvelupisteet[0].lisaaJonoon(a);
-						kahvilaJonoSaapuminen = Kello.getInstance().getAika();
 					}
-					if (!a.meneekoKahvilaan() && !a.onkoVaraus())
+					if (!a.meneekoKahvilaan() && !a.onkoVaraus()) {
+						p1Tulo = Kello.getInstance().getAika();
 						palvelupisteet[1].lisaaJonoon(a);
-					tiski1JonoSaapuminen = Kello.getInstance().getAika();
-					if (!a.meneekoKahvilaan() && a.onkoVaraus())
+					}
+					if (!a.meneekoKahvilaan() && a.onkoVaraus()) {
+						p2Tulo = Kello.getInstance().getAika();
 						palvelupisteet[2].lisaaJonoon(a);
-					tiski2JonoSaapuminen = Kello.getInstance().getAika();
+					}
 					saapumisprosessi.generoiSeuraava();
 					break;
-
-				case KAHVILASTAPOISTUMINEN:	a = palvelupisteet[0].otaJonosta();
-					kahvilaJonoPoistuminen = Kello.getInstance().getAika();
+				case KAHVILASTAPOISTUMINEN:
+					a = palvelupisteet[0].otaJonosta();
+					a.setKahvilaanTuloAika(kTulo);
+					a.setKahvilastaPoistumisaika(Kello.getInstance().getAika());
 					if (!a.onkoVaraus()) {
+						p1Tulo = Kello.getInstance().getAika();
 						palvelupisteet[1].lisaaJonoon(a);
-						tiski1JonoSaapuminen = Kello.getInstance().getAika();
-					}else
+					}else{
+						p2Tulo = Kello.getInstance().getAika();
 						palvelupisteet[2].lisaaJonoon(a);
-					tiski2JonoSaapuminen = Kello.getInstance().getAika();
+					}
 					break;
-
 				case PALVELUTISKI1POISTUMINEN: a = palvelupisteet[1].otaJonosta();
-					tiski1JonoPoistuminen = Kello.getInstance().getAika();
+				a.setPlvlTiski1TuloAika(p1Tulo);
+				a.setPlvltiski1Poistumisaika(Kello.getInstance().getAika());
+					hTulo = Kello.getInstance().getAika();
 					palvelupisteet[3].lisaaJonoon(a);
-					huoneSaapuminen = Kello.getInstance().getAika();
 					break;
 				case PALVELUTISKI2POISTUMINEN: a = palvelupisteet[2].otaJonosta();
-					tiski2JonoPoistuminen = Kello.getInstance().getAika();
+				a.setPlvlTiski2TuloAika(p2Tulo);
+				a.setPlvltiski2Poistumisaika(Kello.getInstance().getAika());
 					palvelupisteet[3].lisaaJonoon(a);
-					huoneSaapuminen = Kello.getInstance().getAika();
+					hTulo = Kello.getInstance().getAika();
 					break;
 				case HUONEESTAPOISTUMINEN: a = palvelupisteet[3].otaJonosta();
-				huonePoistuminen = Kello.getInstance().getAika();
+				a.setHuoneeseenTuloAika(hTulo);
+				a.setHuoneestaPoistumisaika(Kello.getInstance().getAika());
 					palvelupisteet[4].lisaaJonoon(a);
-					ravintolaJonoSaapuminen = Kello.getInstance().getAika();
+					rvTulo = Kello.getInstance().getAika();
 					break;
 				case RAVINTOLASTAPOISTUMINEN:
 					a = palvelupisteet[4].otaJonosta();
-					ravintolaJonoPoistuminen = Kello.getInstance().getAika();
+					a.setRavintolaanTuloAika(rvTulo);
+					a.setRavintolastaPoistumisAika(Kello.getInstance().getAika());
 					a.setPoistumisaika(Kello.getInstance().getAika());
 					a.raportti();
+
+					//Kokeile vielä Asiakasluokan kautta
+					raportti.setRavintolaLapimenoaika(a.getRavintolaLapimenoaika());
+					raportti.setHuoneLapimenoaika(a.getHuoneLapimenoaika());
+					raportti.setKahvilaLapimenoaika(a.getKahvilaLapimenoaika());
+					raportti.setPlvltiski1KeskimLapimenoaika(a.getPlvltiski1Lapimenoaika());
+					raportti.setPlvltiski2Lapimenoaika(a.getPlvltiski2Lapimenoaika());
+
+					raportti.setKahvilanKeskimJononPituus(a.getKahvilanKeskimJononPituus());
+					raportti.setPlvltiski1KeskimJononPituus(a.getPlvltiski1KeskimJononPituus());
+					raportti.setPlvltiski2KeskimJononPituus(a.getPlvltiski2KeskimJononPituus());
+					raportti.setHuoneenKeskimJononPituus(a.getHuoneKeskimJononPituus());
+					raportti.setRavintolaKeskimJononPituus(a.getRavintolaKeskimJononPituus());
+
+					raportti.setKahvilaAsiakkaat(a.getKahvilaAsiakkaat());
+					raportti.setPlvlpiste1Asiakkaat(a.getP1Asiakkaat());
+					raportti.setPlvlpiste2Asiakkaat(a.getP2Asiakkaat());
+					raportti.setHuoneAsiakkaat(a.getHuoneAsiakkaat());
+					raportti.setRavintolaAsiakkaat(a.getRavintolaAsiakkaat());
 			}
 		}
-
-	public void setTulokset () {
-		raportti.setSuoritusteho(asiakaslkm, Kello.getInstance().getAika());
-		raportti.setAsiakaslkm(asiakaslkm);
-
-		raportti.setKahvilaLapimenoaika(kahvilaJonoSaapuminen, kahvilaJonoPoistuminen);
-		raportti.setPlvltiski2Lapimenoaika(kahvilaJonoSaapuminen, tiski2JonoPoistuminen);
-		raportti.setPlvltiski1Lapimenoaika(tiski1JonoSaapuminen, tiski1JonoPoistuminen);
-		raportti.setHuoneLapimenoaika(huoneSaapuminen, huonePoistuminen);
-		raportti.setRavintolaLapimenoaika(kahvilaJonoSaapuminen, ravintolaJonoPoistuminen);
-	}
-
 	@Override
 	protected void tulokset() {
-		setTulokset();
-		System.out.println(raportti);
-		//System.out.println(asiakaslkm);
 		System.out.println("Simulointi päättyi kello " + Kello.getInstance().getAika());
+		System.out.println(raportti);
 		System.out.println("Tulokset ... puuttuvat vielä");
 		kontrolleri.naytaLoppuaika(Kello.getInstance().getAika());
 	}

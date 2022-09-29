@@ -32,7 +32,6 @@ public class Visualisointi2 extends Canvas implements IVisualisointi {
 		gc.setFill(Color.RED);
 		gc.setFont(new Font(20));
 		gc.fillText("Asiakas " + asiakasLkm, 100, 100);
-		
 	}
 	
 

@@ -3,209 +3,144 @@ package simu.model;
 import simu.framework.Moottori;
 
 public class Raportti {
-    // Moottori moottori;
-    //  double simulointiaika = ((Object) moottori).getSimulointiaika();
-
-    double asiakkaidenlukumaara;
-    double suoritettujenAsiakkaidenLukumaara;
-    double aloitusaika;
-    double lopetusaika;
-
-
-    //Kuinka paljon aktuaalista työtä tehdään, eli kun asiakas palveltavana
-    double plvltiski1Aktiiviaika;
-    double plvltiski2Aktiiviaika;
-    double kahvilaAktiiviaika;
-    double ravintolaAktiiviaika;
-
+Asiakas asiakas;
+    int kahvilaAsiakkaat, plvlpiste1Asiakkaat,plvlpiste2Asiakkaat,huoneAsiakkaat,ravintolaAsiakkaat;
     //suoritusteho on palveltujen
-//asiakkaiden lukumäärä aikayksikössä X = C/T (asiakas jaettuna simulointiajalla)
+    //asiakkaiden lukumäärä aikayksikössä X = C/T (asiakas jaettuna simulointiajalla)
     double plvltiski1suoritusteho;
     double plvltiski2suoritusteho;
     double kahvilaSuoritusteho;
     double ravintolaSuoritusteho;
     double yleinenSuoritusteho;
 
-    //S = B/C plvlpisteen aktiiviaika jaettuna asiakkaiden määrällä
-    double plvltiski1keskimPalveluaika;
-    double plvltiski2keskimPalveluaika;
-    double kahvilakeskimPalveluaika;
-    double ravintolakeskimPalveluaika;
 
     //Asiakkaan aika plvlpisteen jonoon saapumisesta palvelun päättymiseen (Asiakkaan kokema läpimenoaika)
-    double plvltiski1lapimenoaika;
-    double plvltiski2lapimenoaika;
-    double kahvilaLapimenoaika;
-    double huoneLapimenoaika;
-    double ravintolaLapimenoaika;
-    double lapimenoaika;
-    //-----------------------------------------------
-    double plvl1KokonaisPaveluaika;
-    double plvl2KokonaisPaveluaika;
-    double kahvilaKokonaisPaveluaika;
-    double ravintolaKokonaisPaveluaika;
+    double plvltiski1keskimlapimenoaika;
+    double plvltiski2keskimlapimenoaika;
+    double kahvilaKeskimLapimenoaika;
+    double huoneKeskimLapimenoaika;
+    double ravintolaKeskimLapimenoaika;
 
-    double kokonaisPaveluaika;
-    ///-----------------------------------------------
-
-    //keskimääräinen läpimenoaika palvelupisteessä
-    //(R, response time) R = W/C  (kokonaisoleskeluaika / asiakkaiden määrällä)
-    double plvltiski1keskimLapimenoaika;
-    double plvltiski2keskimLapimenoaika;
-    double kahvilakeskimLapimenoaika;
-    double ravintolakeskimLapimenoaika;
-
-    //palvelupisteen käyttöaste (U, utilization) on käytön
-//suhde kapasiteettiin U= B/T (aktiiviaika jaettuna ajalla)
-    double plvltiski1kayttoaste;
-    double plvltiski2kayttoaste;
-    double kahvilaKayttoaste;
-    double ravintolaKayttoaste;
-
-    //Kaikkien asiakkaiden läpimenoaikojen summa
-    double ravintolaKokonaispalveluaika;
-    double kahvilaKokonaispalveluaika;
-    double plvltiski1kokonaispalveluaika;
-    double getPlvltiski2kokonaispalveluaika;
-
+    //---------------------------------------------------------------------------------------------
     //palvelupisteen keskimääräinen jononpituus
     //(palveltava mukana) N = W/T (kokonaisoleskeluaika palvelupisteessä / simulointiajalla)
-    double ravintolaJono;
-    double kahvilaJono;
-    double plvltiski1jono;
-    double plvltiski2jono;
+    double kahvilaKeskimJononPituus, plvltiski1KeskimJononPituus,
+            plvltiski2KeskimJononPituus, huoneenKeskimJononPituus,ravintolanKeskimJononPituus;
 
-    //------------------------------------
-    public void setAsiakaslkm(int asiakaslkm) {
-        this.asiakkaidenlukumaara = asiakaslkm;
-    }
-
-//----------------------------------------------------------------------------------------------------
-
-
-    //Kuinka paljon aktuaalista työtä tehdään, eli kun asiakas palveltavana
-    public double kahvilaAktiiviaika(double simulointiaika, double asiakkaanPalveluaika){
-        return plvltiski1Aktiiviaika = yleinenAktiiviAika(simulointiaika, asiakkaanPalveluaika);
-    }
-    public double palvelu1Aktiiviaika(double simulointiaika, double asiakkaanPalveluaika){
-        return plvltiski2Aktiiviaika =  yleinenAktiiviAika(simulointiaika, asiakkaanPalveluaika);
-    }
-    public double palvelu2Aktiiviaika(double simulointiaika, double asiakkaanPalveluaika){
-        return kahvilaAktiiviaika =  yleinenAktiiviAika(simulointiaika, asiakkaanPalveluaika);
-    }
-
-    public double ravintolaAktiiviaika(double simulointiaika, double asiakkaanPalveluaika){
-        return ravintolaAktiiviaika = yleinenAktiiviAika(simulointiaika, asiakkaanPalveluaika);
-    }
-
-    private double yleinenAktiiviAika (double simulointiaika, double asiakkaanPalveluaika) {
-        double yleinenAktiiviaika;
-        return yleinenAktiiviaika = simulointiaika / asiakkaanPalveluaika;
-    }
     //-------------------------------------------------------------------------------------------
 
     //suoritusteho on palveltujen
     //asiakkaiden lukumäärä aikayksikössä X = C/T (asiakkaat jaettuna simulointiajalla)
     //Ehkä jokaiselle palvelupisteelle oma suoritusteho
-    public void setSuoritusteho(long asiakaslkm, double simulointiaika){
-        this.yleinenSuoritusteho = (asiakaslkm / simulointiaika);
+    public void ravintolaSuoritusteho(){
+        double rvAsiakkaat = asiakas.getRavintolaAsiakkaat();
+        double simulointiaika = 1000; //moottori.getSimulointiaika();
+        this.ravintolaSuoritusteho = (rvAsiakkaat / simulointiaika);
     }
-    public double getYleinenSuoritusteho() {
-        return yleinenSuoritusteho;
+    public double getRavintolaSuoritusteho() {
+        return ravintolaSuoritusteho;
     }
-
 
     //--------------------------------------------------------------------------------------------
-
-
     //Asiakkaan aika plvlpisteen jonoon saapumisesta palvelun päättymiseen (Asiakkaan kokema läpimenoaika)
+    //Keskimääräinen läpimenoaika.
 
-    public void  setPlvltiski1Lapimenoaika(double jonoAika, double plvlpistePoistumisaika){
-        this.plvltiski1lapimenoaika = lapimenoaika(jonoAika, plvlpistePoistumisaika);
-        setPlvl1kokonaisPalveluaika(plvltiski1lapimenoaika);
+    public void setKahvilaLapimenoaika(double lapimenoaika){
+        this.kahvilaKeskimLapimenoaika = lapimenoaika;
     }
-    public double getPlvltiski1Lapimenoaika() {
-        return plvltiski1lapimenoaika;
+    public double getKahvilaKeskimLapimenoaika() {
+        return kahvilaKeskimLapimenoaika;
     }
-    public void setPlvltiski2Lapimenoaika(double jonoAika, double plvlpistePoistumisaika){
-        this.plvltiski2lapimenoaika = lapimenoaika(jonoAika, plvlpistePoistumisaika);
+    public void  setPlvltiski1KeskimLapimenoaika(double lapimenoaika){
+        this.plvltiski1keskimlapimenoaika = lapimenoaika;
+    }
+    public double getPlvltiski1KeskimLapimenoaika() {
+        return plvltiski1keskimlapimenoaika;
+    }
+    public void setPlvltiski2Lapimenoaika(double lapimenoaika){
+        this.plvltiski2keskimlapimenoaika = lapimenoaika;
     }
     public double getPlvltiski2Lapimenoaika() {
-        return plvltiski2lapimenoaika;
+        return plvltiski2keskimlapimenoaika;
     }
-    public void setKahvilaLapimenoaika(double jonoAika, double plvlpistePoistumisaika){
-        this.kahvilaLapimenoaika = lapimenoaika(jonoAika, plvlpistePoistumisaika);
+    public void setHuoneLapimenoaika(double lapimenoaika) {
+        this.huoneKeskimLapimenoaika = lapimenoaika;
     }
-    public double getKahvilaLapimenoaika() {
-        return kahvilaLapimenoaika;
+    public double getHuoneKeskimLapimenoaika () {
+        return huoneKeskimLapimenoaika;
     }
-    public void setHuoneLapimenoaika(double jonoaika, double plvlpistePoistumisaika) {
-        this.huoneLapimenoaika = lapimenoaika(jonoaika, plvlpistePoistumisaika);
+    public void setRavintolaLapimenoaika(double lapimenoaika){
+      this.ravintolaKeskimLapimenoaika = lapimenoaika;
     }
-    public void setRavintolaLapimenoaika(double jonoAika, double plvlpistePoistumisaika){
-        //this.ravintolaLapimenoaika = lapimenoaika(jonoAika, plvlpistePoistumisaika);
-        this.ravintolaLapimenoaika = (plvlpistePoistumisaika-jonoAika);
-    }
-    public double getRavintolaLapimenoaika() {
-        return ravintolaLapimenoaika;
-    }
-    private double lapimenoaika (double jonoAika, double plvlpistePoistumisaika) {
-        return lapimenoaika = ( jonoAika - plvlpistePoistumisaika);
-    }
-    public double getLapimenoaika() {
-        return lapimenoaika;
-    }
-
-    //---------------------------------------------------------------------------------------
-
-
-    //Kaikkien asiakkaiden läpimenoaikojen summa (w)
-    public void setPlvl1kokonaisPalveluaika(double palveluaika){
-        plvl1KokonaisPaveluaika = plvl1KokonaisPaveluaika+palveluaika;
-    }
-    public void setPlvl2kokonaisPalveluaika(double palveluaika){
-        plvl2KokonaisPaveluaika = plvl2KokonaisPaveluaika+palveluaika;
-    }
-    public void setKahvilaKokonaisPalveluaika(double palveluaika){
-        kahvilaKokonaisPaveluaika = kahvilaKokonaisPaveluaika+palveluaika;
-    }
-    public void setRavintolaKokonaisPalveluaika(double palveluaika){
-        ravintolaKokonaisPaveluaika = ravintolaKokonaisPaveluaika+palveluaika;
-    }
-    public double yleinenKokonaisPalveluaika(double lapimenoaika){
-        kokonaisPaveluaika += lapimenoaika;
-        return kokonaisPaveluaika;
+    public double getRavintolaKeskimLapimenoaika() {
+        return ravintolaKeskimLapimenoaika;
     }
 
 
-    //keskimääräinen läpimenoaika palvelupisteessä
-    //(R, response time) R = W/C  (kokonaisoleskeluaika / asiakkaiden määrällä)
-    public void keskimLapimenoaika(){
-
-    }
     //-----------------------------------------------------------
-    //S = B/C plvlpisteen aktiiviaika jaettuna asiakkaiden määrällä
-    public void keskimPalveluaika(){}
-
-
-    //palvelupisteen käyttöaste (U, utilization) on käytön
-//suhde kapasiteettiin U= B/T (aktiiviaika jaettuna ajalla)
-    public void kayttoaste(){}
-
-
     //palvelupisteen keskimääräinen jononpituus
     //(palveltava mukana) N = W/T (kokonaisoleskeluaika palvelupisteessä / simulointiajalla)
-    public void keskimJononPituus () {}
+    public void setKahvilanKeskimJononPituus (double kahvilaKeskimJononPituus) {
+        this.kahvilaKeskimJononPituus = kahvilaKeskimJononPituus;
+    }
+    public double getKahvilanKeskimJononPituus() {
+        return this.kahvilaKeskimJononPituus;
+    }
+    public void setPlvltiski1KeskimJononPituus (double plvltiski1KeskimJononPituus) {
+        this.plvltiski1KeskimJononPituus = plvltiski1KeskimJononPituus;
+    }
+    public double getKPlvltiski1KeskimJononPituus() {
+        return this.plvltiski1KeskimJononPituus;
+    }
+    public void setPlvltiski2KeskimJononPituus (double plvltiski2KeskimJononPituus) {
+        this.plvltiski2KeskimJononPituus = plvltiski2KeskimJononPituus;
+    }
+    public double getKPlvltiski2KeskimJononPituus() {
+        return this.plvltiski2KeskimJononPituus;
+    }
+    public void setHuoneenKeskimJononPituus (double huoneenKeskimJononPituus) {
+        this.huoneenKeskimJononPituus = huoneenKeskimJononPituus;
+    }
+    public double getHuoneenKeskimJononPituus() {
+        return this.huoneenKeskimJononPituus;
+    }
+    public void setRavintolaKeskimJononPituus (double ravintolanKeskimJononPituus) {
+        this.ravintolanKeskimJononPituus = ravintolanKeskimJononPituus;
+    }
+    public double getRavintolanKeskimJononPituus() {
+        return this.ravintolanKeskimJononPituus;
+    }
+
+    //-----------------------------------------------------------------------------------------------
+    public void setKahvilaAsiakkaat (int asiakkaat) {
+        this.kahvilaAsiakkaat = asiakkaat;
+    }
+   public void setPlvlpiste1Asiakkaat (int asiakkaat) {
+        this.plvlpiste1Asiakkaat = asiakkaat;
+    }
+    public void setPlvlpiste2Asiakkaat (int asiakkaat) {
+        this.plvlpiste2Asiakkaat = asiakkaat;
+    } public void setHuoneAsiakkaat (int asiakkaat) {
+        this.huoneAsiakkaat = asiakkaat;
+    }  public void setRavintolaAsiakkaat (int asiakkaat) {
+        this.ravintolaAsiakkaat = asiakkaat;
+    }
+
+    //----------------------------------------------------------------------------------------------------------
     @Override
     public String toString() {
-        return "Raportti [asiakkaidenlukumaara=" + asiakkaidenlukumaara + ", yleinenSuoritusteho=" +  "\n" + yleinenSuoritusteho
-                + ", plvltiski1lapimenoaika=" + plvltiski1lapimenoaika + "\n" + ", plvltiski2lapimenoaika="
-                + plvltiski2lapimenoaika + ", kahvilaLapimenoaika=" + kahvilaLapimenoaika + "\n" + ", Huonelapienoaika " + huoneLapimenoaika +", ravintolaLapimenoaika="
-                + ravintolaLapimenoaika ;
-    }
-
-    public double getTulokset(){
-
-        return 0;
+        return "Raportti{" +
+                ", kahvilaKeskimLapimenoaika=" + kahvilaKeskimLapimenoaika + " palvellut asiakkaat " + kahvilaAsiakkaat+"\n" +
+                ", plvltiski1keskimlapimenoaika=" + plvltiski1keskimlapimenoaika + " palvellut asiakkaat " + plvlpiste1Asiakkaat +"\n" +
+                ", plvltiski2keskimlapimenoaika=" + plvltiski2keskimlapimenoaika + " palvellut asiakkaat " + plvlpiste2Asiakkaat  +  "\n" +
+                ", huoneKeskimLapimenoaika=" + huoneKeskimLapimenoaika + " palvellut asiakkaat " + huoneAsiakkaat  + "\n" +
+                ", ravintolaKeskimLapimenoaika=" + ravintolaKeskimLapimenoaika + " palvellut asiakkaat " + ravintolaAsiakkaat +  "\n" +
+                ", kahvilaKeskimJononPituus=" + kahvilaKeskimJononPituus +"\n" +
+                ", plvltiski1KeskimJononPituus=" + plvltiski1KeskimJononPituus +"\n" +
+                ", plvltiski2KeskimJononPituus=" + plvltiski2KeskimJononPituus +"\n" +
+                ", huoneenKeskimJononPituus=" + huoneenKeskimJononPituus +"\n" +
+                ", ravintolanKeskimJononPituus=" + ravintolanKeskimJononPituus +"\n" +
+                '}';
     }
 }
+
