@@ -1,4 +1,4 @@
-package testi;
+/*package testi;
 
 import simu.model.*;
 
@@ -16,20 +16,7 @@ public class SimuTesti {
             huoneet.add(huone1);
 
         }
-/*
-        Huone huone1 = new Huone(1);
-        Huone huone2 = new Huone(2);
-        Huone huone3 = new Huone(4);
-        Huone huone4 = new Huone(4);
-        Huone huone5 = new Huone(1);
 
-        huoneet.add(huone1);
-        huoneet.add(huone2);
-        huoneet.add(huone3);
-        huoneet.add(huone4);
-        huoneet.add(huone5);
-
- */
         Hotelli hotelli = new Hotelli(huoneet);
         VarauksenTeko varauksenTeko = new VarauksenTeko(hotelli);
         int etukateenTodennakoisuus = 60;
@@ -71,3 +58,5 @@ public class SimuTesti {
         return varaus;
     }
 }
+
+ */

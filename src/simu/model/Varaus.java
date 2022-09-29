@@ -1,3 +1,4 @@
+/*
 package simu.model;
 
 import java.text.SimpleDateFormat;
@@ -45,10 +46,8 @@ public class Varaus {
         this.huone = huone;
     }
     public Huone getHuone() {
-      /* // int id =0;
-        i ++;
-        huone = huoneet.get(i);
-*/
+
+
         return this.huone;
     }
 
@@ -63,11 +62,11 @@ public class Varaus {
     public Date getLopetusAika() {
         return this.lopetusAika;
     }
-/*
+
     public void setLopetusAika(Date lopetusAika) {
         this.lopetusAika = lopetusAika;
     }
-*/
+
     public Asiakas getAsiakas() {
         return this.asiakas;
     }
@@ -98,3 +97,4 @@ public class Varaus {
                 "}\n";
     }
 }
+*/

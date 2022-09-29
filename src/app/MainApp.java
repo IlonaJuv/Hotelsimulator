@@ -16,7 +16,6 @@ public class MainApp extends Application {
     private Stage primaryStage;
     private BorderPane rootLayout;
 
-
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
@@ -37,7 +36,6 @@ public class MainApp extends Application {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("view/RootLayout.fxml"));
             rootLayout = (BorderPane) loader.load();
-
             // Show the scene containing the root layout.
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
@@ -67,8 +65,6 @@ public class MainApp extends Application {
             e.printStackTrace();
         }
     }
-
-
     /**
      * Returns the main stage.
      * @return
