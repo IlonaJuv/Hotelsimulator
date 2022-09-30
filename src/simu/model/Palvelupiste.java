@@ -28,6 +28,8 @@ public class Palvelupiste {
 		this.generator = generator;
 		this.skeduloitavanTapahtumanTyyppi = tyyppi;
 	}
+
+	public Palvelupiste () {}
 	public void lisaaJonoon(Asiakas a){   // Jonon 1. asiakas aina palvelussa
 		jono.add(a);
 	}
@@ -68,17 +70,56 @@ public class Palvelupiste {
 			double palveluaika = generator.sample();
 			tapahtumalista.lisaa(new Tapahtuma(skeduloitavanTapahtumanTyyppi,Kello.getInstance().getAika()+palveluaika));
 		}
-	}
-	public boolean ravintolaVarattu() {
-		return ravintolaVaraus;
-	}
-	public boolean onVarattu(){
+	}	public boolean onVarattu(){
 		return varattu;
-	}
-	public boolean onRavintolaJonossa(){
-		return jono.size() != 0;
 	}
 	public boolean onJonossa(){
 		return jono.size() != 0;
+	}
+	Asiakas a = new Asiakas();
+
+	public double getKahvilaLapimenoaika () {
+		return getLapimenoaika(a.getKahvilaTulo(), a.getKahvilaLahto(), a.getKahvilaAsiakkaat());
+	}
+	public double getKahvilanKeskimJononPituus() {
+		return getKeskimJononPituus(a.getKahvilaTulo(), a.getKahvilaLahto());
+	}
+
+	public double getPlvltiski1Lapimenoaika () {
+		return getLapimenoaika(a.getPlvltiski1tulo(), a.getPlvltiski1Lahto(), a.getP1Asiakkaat());
+	}
+	public double getPlvltiski1KeskimJononPituus() {
+		return getKeskimJononPituus(a.getPlvltiski1tulo(), a.getPlvltiski1Lahto());
+	}
+	public double getPlvltiski2Lapimenoaika () {
+
+		return getLapimenoaika(a.getPlvltiski2tulo(), a.getPlvltiski2Lahto(), a.getP2Asiakkaat());
+	}
+	public double getPlvltiski2KeskimJononPituus() {
+		return getKeskimJononPituus(a.getPlvltiski2tulo(), a.getPlvltiski2Lahto());
+	}
+
+	public double getHuoneLapimenoaika () {
+		return getLapimenoaika(a.getHuoneTulo(), a.getHuoneLahto(), a.getHuoneAsiakkaat());
+	}
+	public double getHuoneKeskimJononPituus() {
+		return getKeskimJononPituus(a.getHuoneTulo(), a.getHuoneLahto());
+	}
+	public double getRavintolaLapimenoaika() {
+		return getLapimenoaika(a.getRavintolaTulo(), a.getRavintolaLahto(), a.getRavintolaAsiakkaat());
+	}
+	public double getRavintolaKeskimJononPituus() {
+		return getKeskimJononPituus(a.getRavintolaTulo(), a.getRavintolaLahto());
+	}
+
+	public double getLapimenoaika(double tuloaika, double lahtoaika, int asiakaslkm) {
+		double aikojenErotus = lahtoaika - tuloaika;
+		double lapimenoaika = (aikojenErotus / asiakaslkm);
+		return lapimenoaika;
+	}
+	public double getKeskimJononPituus (double tuloAika, double lahtoAika) {
+		double aikojenErotus = lahtoAika - tuloAika;
+		double jononPituus = (aikojenErotus / 1000); //etsi simulointiaika
+		return jononPituus;
 	}
 }
