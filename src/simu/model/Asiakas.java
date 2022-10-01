@@ -83,10 +83,43 @@ public class Asiakas {
 		double kokKeskiarvo = sum3/id;
 		System.out.println("Kaikkien asiakkaiden läpimenoaikojen keskiarvo tähän asti "+ kokKeskiarvo);
 	}
-	static private double kahvilaTulo, plvltiski1tulo, plvltiski2tulo, huoneTulo, ravintolaTulo; ;
-	static private double kahvilaLahto,plvltiski1Lahto, plvltiski2Lahto, huoneLahto, ravintolaLahto ;
+
+	static private double kahvilaTulo, plvltiski1tulo, plvltiski2tulo, huoneTulo, ravintolaTulo;
+	static private double plvltiski1Lahto, plvltiski2Lahto, huoneLahto, ravintolaLahto, kahvilaLahto;
 	static int kahvilassaPalvellutAsiakkaat, ravintolassaPalvellutAsiakkaat, plvltiski1llaPalvellutAsiakkaat, plvltiski2llaPalvellutAsiakkaat, huoneenPalvellutAsiakkaat;
-		public int getKahvilaAsiakkaat(){
+
+	public static double getKahvilaTulo() {
+		return kahvilaTulo;
+	}
+	public static double getPlvltiski1tulo() {
+		return plvltiski1tulo;
+	}
+	public static double getPlvltiski2tulo() {
+		return plvltiski2tulo;
+	}
+	public static double getHuoneTulo() {
+		return huoneTulo;
+	}
+	public static double getRavintolaTulo() {
+		return ravintolaTulo;
+	}
+	public static double getKahvilaLahto() {
+		return kahvilaLahto;
+	}
+	public static double getPlvltiski1Lahto() {
+		return plvltiski1Lahto;
+	}
+	public static double getPlvltiski2Lahto() {
+		return plvltiski2Lahto;
+	}
+	public static double getHuoneLahto() {
+		return huoneLahto;
+	}
+	public static double getRavintolaLahto() {
+		return ravintolaLahto;
+	}
+
+	public int getKahvilaAsiakkaat(){
 		return kahvilassaPalvellutAsiakkaat;
 	}
 	public int getP1Asiakkaat(){
@@ -105,12 +138,7 @@ public class Asiakas {
 		this.kahvilaLahto = (kahvilaLahto + kahvilastaPoistumisaika);
 		this.kahvilassaPalvellutAsiakkaat++;
 	}
-	public double getKahvilaLapimenoaika () {
-		return getLapimenoaika(kahvilaTulo, kahvilaLahto, kahvilassaPalvellutAsiakkaat);
-	}
-	public double getKahvilanKeskimJononPituus() {
-		return getKeskimJononPituus(kahvilaTulo, kahvilaLahto);
-	}
+
 	public void setPlvlTiski1TuloAika (double plvlTiski1TuloAika) {
 		this.plvltiski1tulo = (plvltiski1tulo + plvlTiski1TuloAika);
 	}
@@ -118,37 +146,19 @@ public class Asiakas {
 		this.plvltiski1Lahto = (plvltiski1Lahto + plvltiski1LahtoAika);
 		this.plvltiski1llaPalvellutAsiakkaat++;
 	}
-	public double getPlvltiski1Lapimenoaika () {
-		return getLapimenoaika(plvltiski1tulo, plvltiski1Lahto, plvltiski1llaPalvellutAsiakkaat);
-	}
-	public double getPlvltiski1KeskimJononPituus() {
-		return getKeskimJononPituus(plvltiski1tulo, plvltiski1Lahto);
-	}
 	public void setPlvlTiski2TuloAika (double plvlTiski2TuloAika) {
-		 this.plvltiski2tulo = (plvltiski2tulo + plvlTiski2TuloAika);
+		this.plvltiski2tulo = (plvltiski2tulo + plvlTiski2TuloAika);
 	}
 	public void setPlvltiski2Poistumisaika (double plvltiski2LahtoAika) {
 		this.plvltiski2Lahto = (plvltiski2Lahto + plvltiski2LahtoAika);
 		this.plvltiski2llaPalvellutAsiakkaat++;
 	}
-	public double getPlvltiski2Lapimenoaika () {
-		return getLapimenoaika(plvltiski2tulo, plvltiski2Lahto, plvltiski2llaPalvellutAsiakkaat);
-	}
-	public double getPlvltiski2KeskimJononPituus() {
-		return getKeskimJononPituus(plvltiski2tulo, plvltiski2Lahto);
-	}
 	public void setHuoneeseenTuloAika (double huoneeseenTuloAika) {
-		 huoneTulo = (huoneTulo + huoneeseenTuloAika);
+		huoneTulo = (huoneTulo + huoneeseenTuloAika);
 	}
 	public void setHuoneestaPoistumisaika(double poistumisaika) {
 		this.huoneLahto = (huoneLahto + poistumisaika);
 		huoneenPalvellutAsiakkaat++;
-	}
-	public double getHuoneLapimenoaika () {
-		return getLapimenoaika(huoneTulo, huoneLahto, huoneenPalvellutAsiakkaat);
-	}
-	public double getHuoneKeskimJononPituus() {
-		return getKeskimJononPituus(huoneTulo, huoneLahto);
 	}
 	public void setRavintolaanTuloAika (double ravintolaanTuloAika) {
 		this.ravintolaTulo = (ravintolaTulo + ravintolaanTuloAika);
@@ -159,22 +169,5 @@ public class Asiakas {
 	}
 	public int getRavintolaAsiakkaat () {
 		return ravintolassaPalvellutAsiakkaat;
-	}
-
-	public double getRavintolaLapimenoaika() {
-		return getLapimenoaika(ravintolaTulo, ravintolaLahto, ravintolassaPalvellutAsiakkaat);
-	}
-	public double getRavintolaKeskimJononPituus() {
-		return getKeskimJononPituus(ravintolaTulo, ravintolaLahto);
-	}
-	public double getLapimenoaika(double tuloaika, double lahtoaika, int asiakaslkm) {
-		double aikojenErotus = lahtoaika - tuloaika;
-		double lapimenoaika = (aikojenErotus / asiakaslkm);
-		return lapimenoaika;
-	}
-	public double getKeskimJononPituus (double tuloAika, double lahtoAika) {
-		double aikojenErotus = lahtoAika - tuloAika;
-		double jononPituus = (aikojenErotus / 1000); //etsi simulointiaika
-		return jononPituus;
 	}
 }

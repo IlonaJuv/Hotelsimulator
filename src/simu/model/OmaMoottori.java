@@ -7,26 +7,10 @@ import simu.framework.Kello;
 import simu.framework.Moottori;
 import simu.framework.Saapumisprosessi;
 import simu.framework.Tapahtuma;
-import controller.IKontrolleri;
 
 public class OmaMoottori extends Moottori {
 	private Saapumisprosessi saapumisprosessi;
 	Raportti raportti = new Raportti();
-	int asiakaslkm = 0;
-	double kahvilaJonoSaapuminen;
-	double kahvilaJonoPoistuminen;
-	double tiski1JonoSaapuminen;
-	double tiski1JonoPoistuminen;
-
-	double tiski2JonoSaapuminen;
-	double tiski2JonoPoistuminen;
-
-	double huoneSaapuminen;
-	double huonePoistuminen;
-	double ravintolaJonoSaapuminen;
-	double ravintolaJonoPoistuminen;
-
-
 	public OmaMoottori(IKontrolleri kontrolleri) { //UUSI
 		super(kontrolleri);
 
@@ -43,11 +27,8 @@ public class OmaMoottori extends Moottori {
 	protected void alustukset() {
 		saapumisprosessi.generoiSeuraava(); // Ensimmäinen saapuminen järjestelmään
 	}
-
 	double rvTulo, kTulo, hTulo, p1Tulo, p2Tulo;
-
-	double kTuloAsiakasluokasta, p1TuloAsiakasluokasta, p2TuloAsiakasluokasta, hTuloAsiakasluokasta, rvTuloAsiakasluokasta;
-	@Override
+		@Override
 
 	protected void suoritaTapahtuma(Tapahtuma t){  // B-vaiheen tapahtumat
 		Asiakas a;
@@ -103,19 +84,19 @@ public class OmaMoottori extends Moottori {
 					a.setRavintolastaPoistumisAika(Kello.getInstance().getAika());
 					a.setPoistumisaika(Kello.getInstance().getAika());
 					a.raportti();
+					Palvelupiste p = new Palvelupiste();
 
-					//Kokeile vielä Asiakasluokan kautta
-					raportti.setRavintolaLapimenoaika(a.getRavintolaLapimenoaika());
-					raportti.setHuoneLapimenoaika(a.getHuoneLapimenoaika());
-					raportti.setKahvilaLapimenoaika(a.getKahvilaLapimenoaika());
-					raportti.setPlvltiski1KeskimLapimenoaika(a.getPlvltiski1Lapimenoaika());
-					raportti.setPlvltiski2Lapimenoaika(a.getPlvltiski2Lapimenoaika());
+					raportti.setRavintolaKeskimLapimenoaika(p.getRavintolaLapimenoaika());
+					raportti.setHuoneKeskimLapimenoaika(p.getHuoneLapimenoaika());
+					raportti.setKahvilaKeskimLapimenoaika(p.getKahvilaLapimenoaika());
+					raportti.setPlvltiski1KeskimLapimenoaika(p.getPlvltiski1Lapimenoaika());
+					raportti.setPlvltiski2KeskimLapimenoaika(p.getPlvltiski2Lapimenoaika());
 
-					raportti.setKahvilanKeskimJononPituus(a.getKahvilanKeskimJononPituus());
-					raportti.setPlvltiski1KeskimJononPituus(a.getPlvltiski1KeskimJononPituus());
-					raportti.setPlvltiski2KeskimJononPituus(a.getPlvltiski2KeskimJononPituus());
-					raportti.setHuoneenKeskimJononPituus(a.getHuoneKeskimJononPituus());
-					raportti.setRavintolaKeskimJononPituus(a.getRavintolaKeskimJononPituus());
+					raportti.setKahvilanKeskimJononPituus(p.getKahvilanKeskimJononPituus());
+					raportti.setPlvltiski1KeskimJononPituus(p.getPlvltiski1KeskimJononPituus());
+					raportti.setPlvltiski2KeskimJononPituus(p.getPlvltiski2KeskimJononPituus());
+					raportti.setHuoneenKeskimJononPituus(p.getHuoneKeskimJononPituus());
+					raportti.setRavintolaKeskimJononPituus(p.getRavintolaKeskimJononPituus());
 
 					raportti.setKahvilaAsiakkaat(a.getKahvilaAsiakkaat());
 					raportti.setPlvlpiste1Asiakkaat(a.getP1Asiakkaat());

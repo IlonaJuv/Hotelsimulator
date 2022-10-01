@@ -1,7 +1,5 @@
 package simu.model;
 
-import simu.framework.Moottori;
-
 public class Raportti {
 Asiakas asiakas;
     int kahvilaAsiakkaat, plvlpiste1Asiakkaat,plvlpiste2Asiakkaat,huoneAsiakkaat,ravintolaAsiakkaat;
@@ -12,7 +10,6 @@ Asiakas asiakas;
     double kahvilaSuoritusteho;
     double ravintolaSuoritusteho;
     double yleinenSuoritusteho;
-
 
     //Asiakkaan aika plvlpisteen jonoon saapumisesta palvelun päättymiseen (Asiakkaan kokema läpimenoaika)
     double plvltiski1keskimlapimenoaika;
@@ -40,12 +37,10 @@ Asiakas asiakas;
     public double getRavintolaSuoritusteho() {
         return ravintolaSuoritusteho;
     }
-
     //--------------------------------------------------------------------------------------------
     //Asiakkaan aika plvlpisteen jonoon saapumisesta palvelun päättymiseen (Asiakkaan kokema läpimenoaika)
     //Keskimääräinen läpimenoaika.
-
-    public void setKahvilaLapimenoaika(double lapimenoaika){
+    public void setKahvilaKeskimLapimenoaika(double lapimenoaika){
         this.kahvilaKeskimLapimenoaika = lapimenoaika;
     }
     public double getKahvilaKeskimLapimenoaika() {
@@ -57,25 +52,24 @@ Asiakas asiakas;
     public double getPlvltiski1KeskimLapimenoaika() {
         return plvltiski1keskimlapimenoaika;
     }
-    public void setPlvltiski2Lapimenoaika(double lapimenoaika){
+    public void setPlvltiski2KeskimLapimenoaika(double lapimenoaika){
         this.plvltiski2keskimlapimenoaika = lapimenoaika;
     }
-    public double getPlvltiski2Lapimenoaika() {
+    public double getPlvltiski2KeskimLapimenoaika() {
         return plvltiski2keskimlapimenoaika;
     }
-    public void setHuoneLapimenoaika(double lapimenoaika) {
+    public void setHuoneKeskimLapimenoaika(double lapimenoaika) {
         this.huoneKeskimLapimenoaika = lapimenoaika;
     }
     public double getHuoneKeskimLapimenoaika () {
         return huoneKeskimLapimenoaika;
     }
-    public void setRavintolaLapimenoaika(double lapimenoaika){
+    public void setRavintolaKeskimLapimenoaika(double lapimenoaika){
       this.ravintolaKeskimLapimenoaika = lapimenoaika;
     }
     public double getRavintolaKeskimLapimenoaika() {
         return ravintolaKeskimLapimenoaika;
     }
-
 
     //-----------------------------------------------------------
     //palvelupisteen keskimääräinen jononpituus
